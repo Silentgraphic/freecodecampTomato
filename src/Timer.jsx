@@ -45,9 +45,9 @@ function Timer({
 
     return (
         <div id="time-left">
-            <span>{sOrB}</span>
+            <span id="timer-label">{sOrB}</span>
             <br />
-            <span>{convertToString()}</span>
+            <span id="time-left">{convertToString()}</span>
         </div>
     );
 }
