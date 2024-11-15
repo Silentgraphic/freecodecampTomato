@@ -2,14 +2,12 @@ import { useEffect, useRef, useState } from "react";
 
 /* eslint-disable react/prop-types */
 function Timer({
-    sesionLength,
-    breakLength,
-    sOrB,
-    setSOrB,
-    isRunning
+    isRunning,
+    timeData,
+    setData
 }) {
     const timer = useRef();
-    let [time, setTime] = useState([sesionLength, 0]);
+    let [time, setTime] = useState([timeData.session, 0]);
 
     useEffect(() => {
         if (isRunning) {
@@ -24,16 +22,17 @@ function Timer({
 
     useEffect(() => {
         //If time reaches zero swap to Session to break
-        if (time[0] === 0 && time[1] === 0) setSOrB(sOrB === "Session" ? "Break" : "Session");
+        if (time[0] === 0 && time[1] === 0) setData((e) => { return { ...e, isSorB: e.isSorB === "Session" ? "Break" : "Session" }; });
     }, [time]);
 
     useEffect(() => {
         //Check if session or break and set time appropriately 
-        setTime(sOrB === "Session" ? [sesionLength, 0] : [breakLength, 0]);
-    }, [sOrB, isRunning]);
+        setTime(timeData.isSorB === "Session" ? [timeData.session, 0] : [timeData.break, 0]);
+    }, [timeData]);
 
 
     const convertToString = () => {
+
         let minsString = time[0].toString();
         let secsString = time[1].toString();
 
@@ -45,7 +44,7 @@ function Timer({
 
     return (
         <div id="time-left">
-            <span id="timer-label">{sOrB}</span>
+            <span id="timer-label">{timeData.isSorB}</span>
             <br />
             <span id="time-left">{convertToString()}</span>
         </div>
