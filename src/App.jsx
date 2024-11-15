@@ -1,32 +1,28 @@
 import { useState } from "react";
 import Buttons from "./Buttons";
 import Timer from "./Timer";
+import Controls from "./Controls";
 
 function App() {
-  const [sesionLength, setSession] = useState(25);
-  const [breakLength, setBreak] = useState(5);
   const [isRunning, setRunning] = useState(false);
-  const [sOrB, setSOrB] = useState("Session");
+  const [timeData, setData] = useState({ session: 25, break: 5, isSorB: "Session" });
 
   return (
     <div id="clock">
-      <button onClick={() => setRunning(!isRunning)}>Test</button>
-      <br />
-
       <Buttons
-        sesionLength={sesionLength}
-        setSession={setSession}
-        breakLength={breakLength}
-        setBreak={setBreak}
-        isRunning={isRunning}
+        timeData={timeData}
+        setData={setData}
       />
 
       <Timer
-        sesionLength={sesionLength}
-        breakLength={breakLength}
-        sOrB={sOrB}
-        setSOrB={setSOrB}
         isRunning={isRunning}
+        timeData={timeData}
+        setData={setData}
+      />
+
+      <Controls
+        setRunning={setRunning}
+        setData={setData}
       />
     </div>
   );
