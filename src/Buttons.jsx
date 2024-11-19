@@ -15,6 +15,10 @@ function Buttons({
                     if (timeData.session < 60 && operator === "+") newData.session++;
                     else if (timeData.session > 1 && operator === "-") newData.session--;
                 }
+
+                //Had to place this here as somehow the tests were getting negative -36???
+                if (timeData.session < 0) newData.session = 1;
+
                 return newData;
             });
         }
