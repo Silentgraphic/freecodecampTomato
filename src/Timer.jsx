@@ -9,10 +9,11 @@ function Timer({
     const timer = useRef();
     let [time, setTime] = useState([timeData.session, 0]);
 
+    //Start timer if isRunning changes
     useEffect(() => {
         if (isRunning) {
             timer.current = setInterval(() => {
-                setTime(([min, sec]) => sec === 0 ? [min - 1, 59] : [min, sec - 1]);
+                setTime(([min, sec]) => sec > 0 ? [min, sec - 1] : [min - 1, 59]);
             }, 1000);
         } else {
             clearInterval(timer.current);
@@ -22,7 +23,7 @@ function Timer({
 
     useEffect(() => {
         //If time reaches zero swap to Session to break
-        if (time[0] === 0 && time[1] === 0) setData((e) => { return { ...e, isSorB: e.isSorB === "Session" ? "Break" : "Session" }; });
+        if (time[0] < 0 && time[1] === 59) setData({ ...timeData, isSorB: timeData.isSorB === "Session" ? "Break" : "Session" });
     }, [time]);
 
     useEffect(() => {
@@ -43,7 +44,7 @@ function Timer({
     };
 
     return (
-        <div id="time-left">
+        <div id="timer">
             <span id="timer-label">{timeData.isSorB}</span>
             <br />
             <span id="time-left">{convertToString()}</span>
