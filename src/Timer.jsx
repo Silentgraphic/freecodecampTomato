@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 function Timer({
     isRunning,
     timeData,
-    setData
+    setData,
+    endSound
 }) {
     const timer = useRef();
     let [time, setTime] = useState([timeData.session, 0]);
@@ -23,7 +24,10 @@ function Timer({
 
     useEffect(() => {
         //If time reaches zero swap to Session to break
-        if (time[0] < 0 && time[1] === 59) setData({ ...timeData, isSorB: timeData.isSorB === "Session" ? "Break" : "Session" });
+        if (time[0] < 0 && time[1] === 59) {
+            endSound.current.play();
+            setData({ ...timeData, isSorB: timeData.isSorB === "Session" ? "Break" : "Session" });
+        }
     }, [time]);
 
     useEffect(() => {
@@ -48,6 +52,7 @@ function Timer({
             <span id="timer-label">{timeData.isSorB}</span>
             <br />
             <span id="time-left">{convertToString()}</span>
+            <audio id="beep" ref={endSound} src="/end.mp3"></audio>
         </div>
     );
 }
