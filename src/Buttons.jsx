@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 function Buttons({
+    isRunning,
     timeData,
     setData
 }) {
     const handleClick = (operator, sOrB) => {
-        if (!timeData.isRunning) {
+        if (!isRunning) {
             setData((e) => {
                 let newData = { ...e };
                 if (sOrB === "Break") {

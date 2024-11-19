@@ -10,6 +10,7 @@ function App() {
   return (
     <div id="clock">
       <Buttons
+        isRunning={isRunning}
         timeData={timeData}
         setData={setData}
       />
