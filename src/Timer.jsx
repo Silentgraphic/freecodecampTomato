@@ -49,9 +49,9 @@ function Timer({
 
     return (
         <div id="timer">
-            <span id="timer-label">{timeData.isSorB}</span>
-            <br />
             <span id="time-left">{convertToString()}</span>
+            <br />
+            <span id="timer-label">{timeData.isSorB}</span>
             <audio id="beep" ref={endSound} src="/end.mp3"></audio>
         </div>
     );

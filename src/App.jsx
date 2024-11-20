@@ -10,17 +10,17 @@ function App() {
 
   return (
     <div id="clock">
-      <Buttons
-        isRunning={isRunning}
-        timeData={timeData}
-        setData={setData}
-      />
-
       <Timer
         isRunning={isRunning}
         timeData={timeData}
         setData={setData}
         endSound={endSound}
+      />
+
+      <Buttons
+        isRunning={isRunning}
+        timeData={timeData}
+        setData={setData}
       />
 
       <Controls
