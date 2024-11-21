@@ -1,22 +1,41 @@
 :root{
-    --primary-colour:lightblue;
-    --secondary-colour:LightGoldenRodYellow;
-    --tertiary-colour:lightcoral;
+    --primary-colour:#EDF2F4;
+    --secondary-colour:#8D99AE;
+    --tertiary-colour:#EDF2F4;
+    --font-color:#2B2D42;
 }
 
 *{
     margin: 0;
     padding: 0;
     border-radius: 4px;
+    font-size: medium;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 
 body{
     background-color:var(--primary-colour);
+    color: var(--font-color);
 }
 
 #root {
     width: 100%;
     height: 100%;
+}
+
+h1 {
+    font-size: clamp(30px,2vw,40px);
+    margin-bottom: 10px;
+    text-decoration: underline;
+    font-weight:900;
+}
+
+#clock,
+.arrowsButtons,
+.controls{
+    box-shadow: 1px 1px 10px gray;
+
 }
 
 #clock {
@@ -29,7 +48,7 @@ body{
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 #clock,
@@ -78,10 +97,13 @@ body{
     padding-top: 2px;
     align-content: center;
     align-items: center;
+    background-color: var(--tertiary-colour);
 }
 
-.arrowsButtons:hover {
-    background-color: var(--tertiary-colour);
+.arrowsButtons:hover,
+.controls:hover {
+    background: var(--secondary-colour);
+    border: 1px solid gray;
 }
 
 .arrowsButtons[data-pointer=true]{
@@ -95,10 +117,9 @@ body{
 
 .controls{
     background: var(--tertiary-colour);
-    border: black solid 1px;
     padding: 5px;
 }
 
-.controls:hover {
-    background: var(--primary-colour);
+.controls:first-child{
+    margin-right: 5px;
 }

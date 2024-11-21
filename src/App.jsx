@@ -10,6 +10,7 @@ function App() {
 
   return (
     <div id="clock">
+      <h1>Tomato &#127813; Timer</h1>
       <Timer
         isRunning={isRunning}
         timeData={timeData}
